@@ -54,8 +54,8 @@ do
 			echo "Hostname: "`hostname`
 			echo "DNS domain : "`dnsdomainname`
 			echo "FQDN: "`hostname --long`
-			echo "Network Address (IP) : "`curl -s ifconfig.me`
-			echo "DNS name servers (DNS IP) : "`sed -nr 's/nameserver (.*)/\1/p' /etc/resolv.conf`
+			echo "Network Address (IP) : "`hostname -i | awk '{print $1}'`
+			echo "DNS name servers (DNS IP) : "${dnsips}
 
 
 			continue
