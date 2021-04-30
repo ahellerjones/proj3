@@ -1,7 +1,11 @@
 #!/bin/bash
+# A program to display some system information
+# Andy Heller-Jones
+# ECE 2574 or something like that 
+# 4/30/2021
+
 
 menu=1
-
 # @param $1 -- the string to print in between the bars
 function printBars() { 
 	echo "-------------------------"
@@ -36,7 +40,6 @@ do
 		printMenu
 		read nextMenu
 		menu=0 # The next state is going to be to print some system info, so we toggle off of the menu state
-		echo "Going to system info at $nextMenu" 
 	else 
 		echo 
 		case $nextMenu in 
@@ -62,8 +65,10 @@ do
 			echo "Total network interfaces found: "`ls -A /sys/class/net | wc -l`
 			echo "*** IP Addresses Information ***"
 			ifconfig
+			echo
 			echo "*** Network routing ***"
 			netstat -rn
+			echo
 			echo "*** Interface traffic information***"
 			netstat -i
 			continue
@@ -91,9 +96,21 @@ do
 		continue
 	;;
 	8)
+		printBars "My home file-tree"
 		./proj3script.sh 
-	esac
+		continue
+	;;
+	9)
+		exit 0
+	;;
+	*) 
+		echo 
+		echo "Invalid number entered, try 1-9"
+		echo 
+		menu=1
+	;;
 
+	esac
 	fi
 done 
 
